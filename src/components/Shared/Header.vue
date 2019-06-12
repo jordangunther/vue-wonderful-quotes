@@ -2,28 +2,17 @@
     <div>
         <h1><strong>Quotes Added</strong></h1>
         <div class="quote-progress-bar">
-            <span v-if="progress == 0"> 0 / 10</span>
-            <div class="quote-progress" :style="{ width: progress + '0%' }" v-else>
-                {{ progress }} / 10
+            <span v-if="quoteCount == 0">{{ quoteCount }} / {{ maxQuotes }}</span>
+            <div class="quote-progress" :style="{ width: (quoteCount / maxQuotes) * 100 + '%' }" v-else>
+                {{ quoteCount }} / {{ maxQuotes }}
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import { quoteBus } from  '../../main';
-
     export default {
-        data() {
-            return {
-                progress: 0
-            }
-        },
-        created() {
-            quoteBus.$on('quoteAdjusted', (quoteLength) => {
-                this.progress = quoteLength;
-            });
-        }
+        props: ['quoteCount', 'maxQuotes'],
     }
 </script>
 

@@ -1,21 +1,12 @@
 <template>
-    <div class="quote" @click="removeQuote()">
-        {{ quote }}
+    <div class="quote">
+        <slot></slot>
     </div>
 </template>
 
 <script>
-    import { quoteBus } from  '../../main';
 
     export default {
-        props: ['quote'],
-        methods: {
-            removeQuote() {
-                if (confirm("would you like to remove this quote?")) {
-                    quoteBus.$emit('removeQuote', this.quote);
-                }
-            }
-        }
     }
 </script>
 
@@ -24,7 +15,12 @@
         border: 1px solid darkgray;
         box-shadow: 1px 1px 2px darkgray;
         padding: 25px 20px;
-        font-style: italic;
-        font-size: 18px;
+        font-size: 24px;
+        font-family: 'Arizonia', cursive;
+        color: #6e6e6e;
+        curser: pointer;
+    }
+    .quote:hover {
+        background-color: #ffe2e2;
     }
 </style>
